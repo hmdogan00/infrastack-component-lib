@@ -9,6 +9,7 @@ module.exports = {
     React: true,
     JSX: true,
   },
+  plugins: ['@typescript-eslint'],
   env: {
     node: true,
   },
