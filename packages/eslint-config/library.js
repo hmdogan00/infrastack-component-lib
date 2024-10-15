@@ -5,7 +5,6 @@ const project = resolve(process.cwd(), "tsconfig.json");
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: ["eslint:recommended", "airbnb", "turbo"],
-  plugins: ["only-warn"],
   globals: {
     React: true,
     JSX: true,
@@ -31,4 +30,5 @@ module.exports = {
       files: ["*.js?(x)", "*.ts?(x)"],
     },
   ],
+  rules: require("./overrides"),
 };
