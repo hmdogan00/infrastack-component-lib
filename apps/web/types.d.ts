@@ -33,7 +33,9 @@ export type ChartTemplateOptions = {
 };
 
 export type ChartTemplate = {
+    id: string;
+    created_at: string;
     title: string;
-    type: string;
-    options: ChartTemplateOptions;
+    chartCount: number;
+    options?: ChartTemplateOptions;
 };

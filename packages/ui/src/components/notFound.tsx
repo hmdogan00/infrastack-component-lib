@@ -14,8 +14,8 @@ const NotFound: FC<NotFoundProps> = ({
 }) => (
   <div className={`w-full h-full flex flex-col items-center justify-center space-y-4 ${className}`}>
     <SearchX className="w-16 h-16 text-primary-foreground" />
-    <h1 className="text-4xl font-semibold text-primary-foreground">{error}</h1>
-    <p className="text-gray-400">{description}</p>
+    <h1 className="text-4xl font-semibold text-primary-foreground text-center">{error}</h1>
+    <p className="text-gray-400 text-center">{description}</p>
   </div>
 );
 
