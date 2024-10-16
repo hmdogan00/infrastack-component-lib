@@ -19,6 +19,9 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
+  font-family: var(--font-rubik);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -30,6 +33,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.italic {
+  font-family: var(--font-rubik-italic);
 }
 
 @media (prefers-color-scheme: dark) {

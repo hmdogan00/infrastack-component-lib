@@ -3,13 +3,13 @@ import localFont from 'next/font/local';
 import ReactQueryProvider from './utils/Providers/ReactQueryProvider';
 import './globals.css';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans'
+const rubik = localFont({
+  src: './fonts/Rubik.ttf',
+  variable: '--font-rubik'
 });
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono'
+const rubikItalic = localFont({
+  src: './fonts/RubikItalic.ttf',
+  variable: '--font-rubik-italic'
 });
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${rubik.variable} ${rubikItalic.variable}`}>
         <ReactQueryProvider>
           {children}
         </ReactQueryProvider>
