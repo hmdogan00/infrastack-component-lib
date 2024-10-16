@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import ReactQueryProvider from './utils/Providers/ReactQueryProvider';
 import './globals.css';
+import '../styles/tw-output.css';
 
 const rubik = localFont({
   src: './fonts/Rubik.ttf',
