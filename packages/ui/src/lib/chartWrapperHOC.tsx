@@ -9,29 +9,29 @@ import {
   CardHeader,
   CardTitle
 } from '@/src/components/card';
-import { ChartProps } from '../types';
+import { BasicItem, ChartProps } from '../types';
 
-type ChartWrapperProps<T> = {
+type ChartWrapperProps<T extends BasicItem> = {
     title: string;
     description: string;
     footer: string;
 } & ChartProps<T>;
 
-const withChartWrapper = <T, >(ChartComponent: FC<ChartProps<T>>) => function ChartWrapper({
+const withChartWrapper = <T extends BasicItem, >(ChartComponent: FC<ChartProps<T>>) => function ChartWrapper({
   title, description, footer, ...rest
 }: ChartWrapperProps<T>) {
   return (
-    <Card>
+    <Card className="dark">
       {(title || description) && (
-      <CardHeader>
-        {title && <CardTitle>{title}</CardTitle>}
-        {description && <CardDescription>{description}</CardDescription>}
+      <CardHeader className="dark">
+        {title && <CardTitle className="dark">{title}</CardTitle>}
+        {description && <CardDescription className="dark">{description}</CardDescription>}
       </CardHeader>
       )}
-      <CardContent>
+      <CardContent className="dark">
         <ChartComponent {...rest} />
       </CardContent>
-      {footer && <CardFooter>{footer}</CardFooter>}
+      {footer && <CardFooter className="dark">{footer}</CardFooter>}
     </Card>
   );
 };

@@ -8,6 +8,16 @@ import withChartWrapper from '../lib/chartWrapperHOC';
 
 const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides: Override) => {
   const createdDefaults = {
+    tooltip: {
+      trigger: 'axis',
+      formatter(params: any) {
+        let tooltipContent = `${params[0].name}<br/>`;
+        params.forEach((param: any) => {
+          tooltipContent += `${param.seriesName}: ${param.value}<br/>`;
+        });
+        return tooltipContent;
+      }
+    },
     legend: {
       data: chartData.map((item) => item.name)
     },
@@ -21,7 +31,7 @@ const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides
       type: 'line',
       stack: 'Total',
       areaStyle: {
-        opacity: 0.4
+        opacity: 0.9
       },
       lineStyle: {
         width: 2
@@ -29,6 +39,7 @@ const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides
       emphasis: {
         focus: 'series'
       },
+      showSymbol: false,
       data: item.data,
       color: item.color
     }))

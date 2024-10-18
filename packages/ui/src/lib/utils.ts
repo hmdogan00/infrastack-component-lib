@@ -6,32 +6,33 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const CHART_DEFAULTS = {
-  tooltip: {
-    trigger: 'axis',
-    formatter(params: any) {
-      let tooltipContent = `${params[0].name}<br/>`;
-      params.forEach((param: any) => {
-        tooltipContent += `${param.seriesName}: ${param.value}<br/>`;
-      });
-      return tooltipContent;
+  legend: {
+    textStyle: {
+      color: '#f5f5f5'
     }
   },
-  legend: {
-    data: ['Desktop', 'Mobile']
+  axisPointer: {
+    lineStyle: {
+      color: '#696969'
+    }
   },
   grid: {
     left: '3%',
     right: '4%',
     bottom: '3%',
-    containLabel: true
+    containLabel: true,
+    borderColor: '#696969'
   },
   xAxis: {
-    type: 'category',
-    boundaryGap: false,
     data: []
   },
   yAxis: {
-    type: 'value'
+    type: 'value',
+    splitLine: {
+      lineStyle: {
+        color: '#696969'
+      }
+    }
   },
   series: []
 };

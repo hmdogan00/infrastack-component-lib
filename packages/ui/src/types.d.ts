@@ -1,7 +1,8 @@
 export type BasicItem = {
-  x: string;
+  x?: string | string[];
+  y?: string | string[];
   name: string;
-  data: number[];
+  data: number[] | number[][] | { value: number; name: string }[];
   color?: string;
 };
 
@@ -44,9 +45,20 @@ export type Override = {
     data: number[];
     color: string;
   }[];
+  visualMap?: {
+    min?: number;
+    max?: number;
+    calculable?: boolean;
+    orient?: string;
+    left?: string;
+    bottom?: string;
+    inRange?: {
+      color?: string[];
+    }
+  };
 };
 
-export type ChartProps<T> = {
+export type ChartProps<T extends BasicItem> = {
   data: T[];
   optionOverrides: Override;
 };
