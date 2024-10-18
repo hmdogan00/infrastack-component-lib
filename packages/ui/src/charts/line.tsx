@@ -1,12 +1,12 @@
 'use client';
 
 import ReactEchart from 'echarts-for-react';
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import { BasicItem, ChartProps, Override } from '../types';
 import { CHART_DEFAULTS } from '../lib/utils';
 import withChartWrapper from '../lib/chartWrapperHOC';
 
-const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides: Override) => {
+export const lineChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides: Override) => {
   const createdDefaults = {
     legend: {
       data: chartData.map((item) => item.name)
@@ -19,12 +19,8 @@ const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides
     series: chartData.map((item) => ({
       name: item.name,
       type: 'line',
-      stack: 'Total',
-      areaStyle: {
-        opacity: 0.4
-      },
       lineStyle: {
-        width: 2
+        width: 1
       },
       emphasis: {
         focus: 'series'
@@ -36,10 +32,10 @@ const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides
   return merge({}, CHART_DEFAULTS, createdDefaults, overrides);
 };
 
-function AreaChart<T extends BasicItem>({
+function LineChart<T extends BasicItem>({
   data, optionOverrides
 }: ChartProps<T>) {
-  return <ReactEchart option={areaChartOptionCreator(data, optionOverrides)} />;
+  return <ReactEchart option={lineChartOptionCreator(data, optionOverrides)} />;
 }
 
-export default withChartWrapper(AreaChart);
+export default withChartWrapper(LineChart);
