@@ -2,11 +2,13 @@
 
 import ReactEchart from 'echarts-for-react';
 import { merge } from 'lodash';
-import { BasicItem, ChartProps, Override } from '../types';
+import {
+  BasicItem, ChartProps, DataType, Override
+} from '../types';
 import { CHART_DEFAULTS } from '../lib/utils';
 import withChartWrapper from '../lib/chartWrapperHOC';
 
-const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides: Override) => {
+const areaChartOptionCreator = <T extends BasicItem, >(chartData: DataType<T>, overrides: Override) => {
   const createdDefaults = {
     tooltip: {
       trigger: 'axis',
@@ -19,14 +21,19 @@ const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides
       }
     },
     legend: {
-      data: chartData.map((item) => item.name)
+      data: chartData.series.map((item) => item.name)
     },
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: chartData.map((item) => item.x)
+      axisPointer: {
+        lineStyle: {
+          width: 0
+        }
+      },
+      data: chartData.xAxis
     },
-    series: chartData.map((item) => ({
+    series: chartData.series.map((item) => ({
       name: item.name,
       type: 'line',
       stack: 'Total',
@@ -44,13 +51,17 @@ const areaChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides
       color: item.color
     }))
   };
+  createdDefaults.series = createdDefaults.series.map((series) => merge({}, series, overrides.series)); // to make sure that the series overrides are applied correctly
   return merge({}, CHART_DEFAULTS, createdDefaults, overrides);
 };
 
 function AreaChart<T extends BasicItem>({
-  data, optionOverrides
+  data, optionOverrides = {}, chartRef
 }: ChartProps<T>) {
-  return <ReactEchart option={areaChartOptionCreator(data, optionOverrides)} />;
+  if (!Array.isArray(data.series)) {
+    throw new Error('AreaChart requires an array of data items');
+  }
+  return <ReactEchart ref={chartRef} option={areaChartOptionCreator(data, optionOverrides)} />;
 }
 
 export default withChartWrapper(AreaChart);

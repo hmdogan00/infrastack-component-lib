@@ -1,6 +1,6 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, forwardRef, JSX } from 'react';
 import {
   Card,
   CardContent,
@@ -11,16 +11,16 @@ import {
 } from '@/src/components/card';
 import { BasicItem, ChartProps } from '../types';
 
-type ChartWrapperProps<T extends BasicItem> = {
-    title: string;
-    description: string;
-    footer: string;
-} & ChartProps<T>;
+type ChartWrapperProps = {
+    title: string | JSX.Element;
+    description: string | JSX.Element;
+    footer: string | JSX.Element;
+} & ChartProps<BasicItem>;
 
-const withChartWrapper = <T extends BasicItem, >(ChartComponent: FC<ChartProps<T>>) => function ChartWrapper({
-  title, description, footer, ...rest
-}: ChartWrapperProps<T>) {
-  return (
+function withChartWrapper<T extends ChartWrapperProps, R>(ChartComponent: FC<ChartProps<BasicItem>>) {
+  return forwardRef<R, T>(({
+    title, description, footer, ...rest
+  }, ref) => (
     <Card className="dark">
       {(title || description) && (
       <CardHeader className="dark">
@@ -29,11 +29,11 @@ const withChartWrapper = <T extends BasicItem, >(ChartComponent: FC<ChartProps<T
       </CardHeader>
       )}
       <CardContent className="dark">
-        <ChartComponent {...rest} />
+        <ChartComponent {...rest} chartRef={ref} />
       </CardContent>
       {footer && <CardFooter className="dark">{footer}</CardFooter>}
     </Card>
-  );
-};
+  ));
+}
 
 export default withChartWrapper;

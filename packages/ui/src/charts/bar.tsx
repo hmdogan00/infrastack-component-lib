@@ -2,34 +2,43 @@
 
 import ReactEchart from 'echarts-for-react';
 import { merge } from 'lodash';
-import { BasicItem, ChartProps, Override } from '../types';
+import {
+  BasicItem, ChartProps, DataType, Override
+} from '../types';
 import { CHART_DEFAULTS } from '../lib/utils';
 import withChartWrapper from '../lib/chartWrapperHOC';
 
-const barChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides: Override) => {
+const barChartOptionCreator = <T extends BasicItem, >(chartData: DataType<T>, overrides: Override) => {
   const createdDefaults = {
     legend: {
-      data: chartData.map((item) => item.name)
+      data: chartData.series.map((item) => item.name)
     },
     xAxis: {
       type: 'category',
-      boundaryGap: true,
-      data: chartData.map((item) => item.x)
+      data: chartData.xAxis
     },
-    series: chartData.map((item) => ({
+    yAxis: {
+      type: 'value',
+      data: chartData.yAxis
+    },
+    series: chartData.series.map((item) => ({
       name: item.name,
       type: 'bar',
       data: item.data,
       color: item.color
     }))
   };
+  createdDefaults.series = createdDefaults.series.map((series, index) => merge({}, series, overrides.series?.[index])); // to make sure that the series overrides are applied correctly
   return merge({}, CHART_DEFAULTS, createdDefaults, overrides);
 };
 
 function BarChart<T extends BasicItem>({
-  data, optionOverrides
+  data, optionOverrides = {}, chartRef
 }: ChartProps<T>) {
-  return <ReactEchart option={barChartOptionCreator(data, optionOverrides)} />;
+  if (!Array.isArray(data.series)) {
+    throw new Error('Bar Chart requires an array of data items');
+  }
+  return <ReactEchart ref={chartRef} option={barChartOptionCreator(data, optionOverrides)} />;
 }
 
 export default withChartWrapper(BarChart);

@@ -2,21 +2,23 @@
 
 import ReactEchart from 'echarts-for-react';
 import merge from 'lodash/merge';
-import { BasicItem, ChartProps, Override } from '../types';
+import {
+  BasicItem, ChartProps, DataType, Override
+} from '../types';
 import { CHART_DEFAULTS } from '../lib/utils';
 import withChartWrapper from '../lib/chartWrapperHOC';
 
-export const lineChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides: Override) => {
+export const lineChartOptionCreator = <T extends BasicItem, >(chartData: DataType<T>, overrides: Override) => {
   const createdDefaults = {
     legend: {
-      data: chartData.map((item) => item.name)
+      data: chartData.series.map((item) => item.name)
     },
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: chartData.map((item) => item.x)
+      data: chartData.xAxis
     },
-    series: chartData.map((item) => ({
+    series: chartData.series.map((item) => ({
       name: item.name,
       type: 'line',
       lineStyle: {
@@ -29,13 +31,17 @@ export const lineChartOptionCreator = <T extends BasicItem, >(chartData: T[], ov
       color: item.color
     }))
   };
+  createdDefaults.series = createdDefaults.series.map((series, index) => merge({}, series, overrides.series?.[index])); // to make sure that the series overrides are applied correctly
   return merge({}, CHART_DEFAULTS, createdDefaults, overrides);
 };
 
 function LineChart<T extends BasicItem>({
-  data, optionOverrides
+  data, optionOverrides = {}, chartRef
 }: ChartProps<T>) {
-  return <ReactEchart option={lineChartOptionCreator(data, optionOverrides)} />;
+  if (!Array.isArray(data.series)) {
+    throw new Error('Line Chart requires an array of data items');
+  }
+  return <ReactEchart ref={chartRef} option={lineChartOptionCreator(data, optionOverrides)} />;
 }
 
 export default withChartWrapper(LineChart);

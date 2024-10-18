@@ -2,12 +2,14 @@
 
 import ReactEchart from 'echarts-for-react';
 import { merge } from 'lodash';
-import { BasicItem, ChartProps, Override } from '../types';
+import {
+  BasicItem, ChartProps, Override, DataType
+} from '../types';
 import { CHART_DEFAULTS } from '../lib/utils';
 import withChartWrapper from '../lib/chartWrapperHOC';
 
-const pieChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides: Override) => {
-  if (!chartData[0]) {
+const pieChartOptionCreator = <T extends BasicItem, >(chartData: DataType<T>, overrides: Override) => {
+  if (!chartData.series[0]) {
     throw new Error('PieChart requires a single data item');
   }
   const createdDefaults = {
@@ -22,14 +24,14 @@ const pieChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides:
     yAxis: null,
     grid: null,
     series: [{
-      name: chartData[0].name,
+      name: chartData.series[0].name,
       type: 'pie',
       label: {
         color: '#fff'
       },
       radius: '50%',
-      data: chartData[0].data,
-      color: chartData[0].color,
+      data: chartData.series[0].data,
+      color: chartData.series[0].color,
       emphasis: {
         itemStyle: {
           shadowBlur: 10,
@@ -39,13 +41,14 @@ const pieChartOptionCreator = <T extends BasicItem, >(chartData: T[], overrides:
       }
     }]
   };
+  createdDefaults.series = createdDefaults.series.map((series, index) => merge({}, series, overrides.series?.[index])); // to make sure that the series overrides are applied correctly
   return merge({}, CHART_DEFAULTS, createdDefaults, overrides);
 };
 
 function PieChart<T extends BasicItem>({
-  data, optionOverrides
+  data, optionOverrides = {}
 }: ChartProps<T>) {
-  if (!data[0]) {
+  if (!data.series[0]) {
     throw new Error('PieChart only supports a single data item');
   }
   return <ReactEchart option={pieChartOptionCreator(data, optionOverrides)} />;

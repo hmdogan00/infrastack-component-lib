@@ -6,6 +6,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const CHART_DEFAULTS = {
+  tooltip: {
+    formatter: (params: any) => `${params.name}<br/>${params.seriesName}: ${params.value}<br/>`,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    textStyle: {
+      color: '#f5f5f5'
+    }
+  },
   legend: {
     textStyle: {
       color: '#f5f5f5'
@@ -30,7 +37,8 @@ export const CHART_DEFAULTS = {
     type: 'value',
     splitLine: {
       lineStyle: {
-        color: '#696969'
+        color: '#696969',
+        opacity: 0.3
       }
     }
   },

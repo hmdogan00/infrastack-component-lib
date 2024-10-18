@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export type ChartTemplateOptions = {
     title: {
         text: string;
@@ -38,4 +39,11 @@ export type ChartTemplate = {
     title: string;
     chartCount: number;
     options?: ChartTemplateOptions;
+};
+
+export type EchartsRef = {
+    getEchartsInstance: () => {
+        dispatchAction: (action: { type: string; key?: string; brushOption: { brushType: string; brushMode: string; } }) => void;
+        on: (event: string, callback: (params: any) => void) => void;
+    };
 };
