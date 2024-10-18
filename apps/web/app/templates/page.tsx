@@ -17,9 +17,9 @@ export default function Home() {
     queryKey: ['templates']
   });
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-8">
-      <main className="templates-main flex flex-col items-center justify-center min-h-screen gap-8">
-        {isLoading && <CardLoaderN n={12} />}
+    <div className="templates-main flex flex-col justify-center gap-8 p-10">
+      <main className="grid grid-cols-3 grid-flow-row gap-8 flex-grow">
+        {isLoading && <CardLoaderN n={9} />}
         {isError && <div>Error loading templates</div>}
         {templates && templates.length === 0 && <NotFound className="col-span-3 row-span-4" error="You don't have any templates!" description="Add a new template from the button above" />}
         {templates && templates.map((template) => (
