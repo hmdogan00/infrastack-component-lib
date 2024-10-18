@@ -15,11 +15,15 @@ const mockData = {
 
 const PieChart = () => (
   <PieChartLib
-    title="PieChart"
-    description="This is a piePieChart"
-    footer="This is the footer"
+    title="Pie Chart - Access From"
+    description="Showing access from different sources"
+    footer={<p className="text-gray-400 font-extralight">January - June 2024</p>}
     data={mockData}
-    optionOverrides={{}}
+    optionOverrides={{
+      legend: {
+        type: 'scroll'
+      }
+    }}
   />
 );
 

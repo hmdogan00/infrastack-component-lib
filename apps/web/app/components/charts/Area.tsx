@@ -62,11 +62,8 @@ export const AreaChart5 = () => {
     if (chart) {
       chart.dispatchAction({
         type: 'takeGlobalCursor',
-        key: 'brush',
-        brushOption: {
-          brushType: 'lineX',
-          brushMode: 'single'
-        }
+        key: 'dataZoomSelect',
+        dataZoomSelectActive: true
       });
       chart.on('brushEnd', (params) => {
         console.log(params);

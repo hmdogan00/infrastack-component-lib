@@ -20,11 +20,25 @@ const mockData = {
   }]
 };
 
+const mockDataErrs = {
+  xAxis: mockX,
+  yAxis: mockY,
+  series: [{
+    name: 'Error Count',
+    // data is a 2d array of the form [x, y, value]
+    data: Array.from({ length: mockY.length * mockX.length }, (_, i) => [
+      i % mockX.length,
+      Math.floor(i / mockX.length),
+      Math.floor(Math.random() * 100)
+    ])
+  }]
+};
+
 export const Heatmap1 = () => (
   <HeatmapLib
-    title="Heatmap"
-    description="This is a heatmap"
-    footer="This is the footer"
+    title="Heatmap - Trace Count"
+    description="Trace counts for different latencies across hours"
+    footer={<p className="text-gray-400 font-extralight">18 Oct 2024</p>}
     data={mockData}
     optionOverrides={{
       visualMap: {
@@ -38,10 +52,10 @@ export const Heatmap1 = () => (
 
 export const Heatmap2 = () => (
   <HeatmapLib
-    title="Heatmap"
-    description="This is a heatmap"
-    footer="This is the footer"
-    data={mockData}
+    title="Heatmap - Error Count"
+    description="Error counts for different latencies across hours"
+    footer={<p className="text-gray-400 font-extralight">18 Oct 2024</p>}
+    data={mockDataErrs}
     optionOverrides={{
       visualMap: {
         inRange: {
