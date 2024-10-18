@@ -44,3 +44,7 @@ a {
     color-scheme: dark;
   }
 }
+
+.templates-main {
+  height: calc(100vh - 7vh);
+}

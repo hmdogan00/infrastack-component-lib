@@ -14,6 +14,9 @@ const config = {
       },
     },
     extend: {
+      height: {
+        '7vh': '7vh',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

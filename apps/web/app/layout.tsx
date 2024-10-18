@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import ReactQueryProvider from './utils/Providers/ReactQueryProvider';
 import './globals.css';
 import '../styles/tw-output.css';
+import Header from './components/Header';
 
 const rubik = localFont({
   src: './fonts/Rubik.ttf',
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rubik.variable} ${rubikItalic.variable}`}>
+        <Header />
         <ReactQueryProvider>
           {children}
         </ReactQueryProvider>
