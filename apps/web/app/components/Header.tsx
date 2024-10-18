@@ -24,7 +24,7 @@ const Header = () => {
   const currentPath = new URL(window.location.href).pathname;
 
   return (
-    <header className="h-7vh w-full border-b border-gray-200 px-8 flex justify-between items-center">
+    <header className="h-7vh w-full border-b border-opacity-40 border-gray-200 px-8 flex justify-between items-center">
       <div className="flex gap-8">
         {generateHeaderLinks(currentPath)}
       </div>
