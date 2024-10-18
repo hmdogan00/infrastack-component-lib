@@ -65,9 +65,6 @@ export const AreaChart5 = () => {
         key: 'dataZoomSelect',
         dataZoomSelectActive: true
       });
-      chart.on('brushEnd', (params) => {
-        console.log(params);
-      });
     }
   }, []);
   return (

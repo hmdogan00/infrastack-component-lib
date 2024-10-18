@@ -19,6 +19,7 @@ export type Override = {
   };
   legend?: {
     data?: string[];
+    type?: string;
   } | null;
   grid?: {
     left?: string;

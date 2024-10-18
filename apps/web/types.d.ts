@@ -43,7 +43,7 @@ export type ChartTemplate = {
 
 export type EchartsRef = {
     getEchartsInstance: () => {
-        dispatchAction: (action: { type: string; key?: string; brushOption: { brushType: string; brushMode: string; } }) => void;
+        dispatchAction: (action: { type: string; key?: string; brushOption?: { brushType: string; brushMode: string; }, dataZoomSelectActive: boolean }) => void;
         on: (event: string, callback: (params: any) => void) => void;
     };
 };
