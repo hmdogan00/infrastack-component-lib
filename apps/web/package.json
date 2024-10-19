@@ -14,6 +14,7 @@
     "@tanstack/react-query": "^5.59.15",
     "lucide-react": "^0.453.0",
     "next": "14.2.6",
+    "pg-promise": "^11.10.1",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },

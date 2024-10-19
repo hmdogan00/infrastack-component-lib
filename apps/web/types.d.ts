@@ -38,7 +38,7 @@ export type ChartTemplate = {
     created_at: string;
     title: string;
     chartCount: number;
-    options?: ChartTemplateOptions;
+    layout_data: string;
 };
 
 export type EchartsRef = {
