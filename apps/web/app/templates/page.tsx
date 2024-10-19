@@ -8,7 +8,7 @@ import {
   CardFooter
 } from '@repo/ui';
 import { useQuery } from '@tanstack/react-query';
-import ReactGridLayout from 'react-grid-layout';
+import ReactGridLayout, { Layout } from 'react-grid-layout';
 import { getTemplates } from '../api/templates';
 import { getRelativeTime } from '../utils/functions';
 import { CHART_DEMO_SET } from '../utils/constants';
@@ -25,10 +25,14 @@ export default function Home() {
         {isError && <div>Error loading templates</div>}
         {templates && templates.length === 0 && <NotFound className="col-span-3 row-span-4" error="You don't have any templates!" description="Add a new template from the button above" />}
         {templates && templates.map((template) => {
-          const layout = JSON.parse(template.layout_data).map((l) => ({ ...l, static: true }));
+          const layout = (JSON.parse(template.layout_data) as Layout[]).map((l) => ({ ...l, static: true }));
           const chartData = JSON.parse(template.chart_data) as { id: string }[];
           return (
-            <Card key={template.id} className="flex flex-col justify-between flex-grow max-h-96 gap-2">
+            <Card
+              key={template.id}
+              className="flex flex-col justify-between flex-grow max-h-96 gap-2 cursor-pointer"
+              onClick={() => { window.location.href = `/templates/${template.id}`; }}
+            >
               <CardHeader>
                 <CardTitle>{template.title}</CardTitle>
               </CardHeader>

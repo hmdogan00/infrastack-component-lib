@@ -6,6 +6,11 @@ export const getTemplates = async (): Promise<ChartTemplate[]> => {
   return data;
 };
 
+export const getTemplate = async (id: string): Promise<ChartTemplate> => {
+  const response = await fetch(`/routes/templates/${id}`);
+  return response.json();
+};
+
 export const postTemplate = async (template: ChartTemplate): Promise<ChartTemplate[]> => {
   const response = await fetch('/routes/templates', {
     method: 'POST',
