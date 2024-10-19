@@ -24,7 +24,6 @@ const TemplateDetails: FC<TemplateDetailsProps> = ({ params }) => {
   });
   const layout = (JSON.parse(template?.layout_data || '[]') as Layout[]).map((l) => ({ ...l, static: true }));
   const charts = JSON.parse(template?.chart_data || '[]') as { id: string }[];
-  console.log({ layout, charts });
   return (
     <>
       { isLoading && <CardLoaderN n={1} /> }
