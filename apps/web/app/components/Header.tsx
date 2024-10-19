@@ -29,10 +29,10 @@ const Header = () => {
         {generateHeaderLinks(currentPath)}
       </div>
       {currentPath === '/templates' && (
-      <Button>
-        <PlusCircleIcon className="mr-2 h-4 w-4" />
-        Add Template
-      </Button>
+        <Button onClick={() => { window.location.href = '/templates/add'; }}>
+          <PlusCircleIcon className="mr-2 h-4 w-4" />
+          Add Template
+        </Button>
       )}
     </header>
   );

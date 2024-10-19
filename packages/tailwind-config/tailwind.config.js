@@ -16,6 +16,11 @@ const config = {
     extend: {
       height: {
         '7vh': '7vh',
+        '93vh': '93vh',
+      },
+      minHeight: {
+        '7vh': '7vh',
+        '93vh': '93vh',
       },
       colors: {
         border: "hsl(var(--border))",

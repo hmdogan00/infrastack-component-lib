@@ -34,11 +34,12 @@ export type ChartTemplateOptions = {
 };
 
 export type ChartTemplate = {
-    id: string;
-    created_at: string;
+    id?: string;
+    created_at?: string;
     title: string;
-    chartCount: number;
+    chart_count: number;
     layout_data: string;
+    chart_data: string;
 };
 
 export type EchartsRef = {

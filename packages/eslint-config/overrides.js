@@ -1,5 +1,6 @@
 module.exports = {
   "react/require-default-props": "off",
+  "react/prop-types": "off",
   "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
   "react/function-component-definition": "off",
   "react/jsx-props-no-spreading": "off",

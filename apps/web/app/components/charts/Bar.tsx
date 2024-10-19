@@ -3,7 +3,7 @@ import { mockData, mockDataSingle, mockDataNegatives } from './mocks';
 
 export const BarChart1 = () => (
   <BarChartLib
-    title="Bar Chart"
+    title="Bar Chart - Multiple"
     description="Showing total visitors for the last 6 months"
     footer={<p className="text-gray-400 font-extralight">January - June 2024</p>}
     data={mockData}
@@ -19,7 +19,7 @@ export const BarChart1 = () => (
 
 export const BarChart2 = () => (
   <BarChartLib
-    title="Bar Chart"
+    title="Bar Chart - Single"
     description="Showing total visitors for the last 6 months"
     footer={<p className="text-gray-400 font-extralight">January - June 2024</p>}
     data={mockDataSingle}
@@ -28,7 +28,7 @@ export const BarChart2 = () => (
 
 export const BarChart3 = () => (
   <BarChartLib
-    title="Bar Chart"
+    title="Bar Chart - Horizontal Negative"
     description="Showing total visitors for the last 6 months"
     footer={<p className="text-gray-400 font-extralight">January - June 2024</p>}
     data={mockDataNegatives}

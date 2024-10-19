@@ -26,7 +26,7 @@ export const LineChart1 = () => (
 
 export const LineChart2 = () => (
   <LineChartLib
-    title="Line Chart"
+    title="Line Chart - Smooth"
     description="Showing total visitors for the last 6 months"
     footer={<p className="text-gray-400 font-extralight">January - June 2024</p>}
     data={mockData}

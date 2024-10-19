@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { Toaster } from '@repo/ui';
 import ReactQueryProvider from './utils/Providers/ReactQueryProvider';
 import './globals.css';
 import '../styles/tw-output.css';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 import Header from './components/Header';
 
 const rubik = localFont({
@@ -31,6 +34,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           {children}
         </ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );
