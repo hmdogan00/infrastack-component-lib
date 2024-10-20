@@ -31,7 +31,7 @@ export const lineChartOptionCreator = <T extends BasicItem, >(chartData: DataTyp
       color: item.color
     }))
   };
-  createdDefaults.series = createdDefaults.series.map((series, index) => merge({}, series, overrides.series?.[index])); // to make sure that the series overrides are applied correctly
+  createdDefaults.series = createdDefaults.series.map((series) => merge({}, series, overrides.series));
   return merge({}, CHART_DEFAULTS, createdDefaults, overrides);
 };
 

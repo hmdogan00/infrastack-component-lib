@@ -3,7 +3,6 @@
 import { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
-  CardDescription,
   CardHeader,
   CardTitle,
   Card,
@@ -31,11 +30,9 @@ const TemplateDetails: FC<TemplateDetailsProps> = ({ params }) => {
       { template && (
       <Card className="flex flex-col min-h-93vh p-6">
         <CardHeader className="p-0">
-          <CardTitle>{template.title}</CardTitle>
-          <CardDescription>
-            Add charts, move and resize them, and click save to create a new template.
-          </CardDescription>
+          <CardTitle className="text-2xl">{template.title}</CardTitle>
         </CardHeader>
+        <div className="w-screen border-b border-gray-800 mt-2" style={{ marginLeft: '-1.5rem' }} />
         <div className="flex flex-col flex-grow space-y-4 mt-5">
           <WidthGridLayout
             className="layout"

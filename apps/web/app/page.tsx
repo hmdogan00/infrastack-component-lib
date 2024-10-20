@@ -1,8 +1,7 @@
 'use client';
 
 import {
-  AreaChart1, AreaChart2, AreaChart3, AreaChart4,
-  AreaChart5
+  AreaChart1, AreaChart2, AreaChart3, AreaChart4, AreaChart5
 } from './components/charts/Area';
 import {
   LineChart1, LineChart2, LineChart3, LineChart4
